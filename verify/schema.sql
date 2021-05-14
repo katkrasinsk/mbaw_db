@@ -2,6 +2,9 @@
 
 BEGIN;
 
--- XXX Add verifications here.
+				DO $$
+				BEGIN
+					 ASSERT (SELECT has_schema_privilege('mbaw', 'usage'));
+				END $$;
 
 ROLLBACK;
