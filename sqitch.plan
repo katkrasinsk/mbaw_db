@@ -2,3 +2,6 @@
 %project=mbaw
 
 schema 2021-05-14T01:07:02Z greic <greic@LAPTOP-AGD1O0PE> # Create schema
+animals 2021-05-14T14:25:18Z Marco Arthur <arthurpbs@gmail.com> # Add Animals table
+enclosure 2021-05-14T14:43:06Z Marco Arthur <arthurpbs@gmail.com> # Add table enclosures (recinto in portuguese)
+animal_file 2021-05-14T14:52:11Z Marco Arthur <arthurpbs@gmail.com> # Add animal_files table to register individuals
