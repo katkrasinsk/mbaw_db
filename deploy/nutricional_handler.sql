@@ -15,10 +15,11 @@ BEGIN;
 	);
 	CREATE TYPE WELLNESS AS ENUM ('good', 'avarage', 'bad');
 
-	CREATE TABLE nutricional_events(
+	CREATE TABLE mbaw.nutricional_events(
 		id SERIAL PRIMARY KEY,
 		food_id INT,
 		carer_id INT,
+		animal_file_id INT,
 		offered_at TIMESTAMP NOT NULL,
 		observations TEXT,
 		assimilated_qty NUMERIC CHECK (assimilated_qty > 0),
@@ -27,7 +28,8 @@ BEGIN;
 		acceptance_avaliation WELLNESS,
 		extra_attrs JSONB,
 		CONSTRAINT fk_food FOREIGN KEY(food_id) REFERENCES mbaw.foods(id),
-		CONSTRAINT fk_carer FOREIGN KEY(carer_id) REFERENCES mbaw.carers(id)
+		CONSTRAINT fk_carer FOREIGN KEY(carer_id) REFERENCES mbaw.carers(id),
+		CONSTRAINT fk_animal_file FOREIGN KEY(animal_file_id) REFERENCES mbaw.animal_files(id)
 	);
 
 COMMIT;

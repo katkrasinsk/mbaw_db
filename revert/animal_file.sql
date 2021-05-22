@@ -2,6 +2,6 @@
 
 BEGIN;
 
-	DROP TABLE mbaw.animal_file;
+	DROP TABLE mbaw.animal_files;
 
 COMMIT;
