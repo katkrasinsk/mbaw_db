@@ -2,7 +2,9 @@
 
 BEGIN;
 
-	DROP TABLE mbaw.nutricional_events;
+	DROP TABLE mbaw.animal_meals;
+	DROP TABLE mbaw.meal_details;
+	DROP TABLE mbaw.meals;
 	DROP TABLE mbaw.foods;
 	DROP TYPE WELLNESS CASCADE; 
 

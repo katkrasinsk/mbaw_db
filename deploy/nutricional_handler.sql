@@ -13,23 +13,29 @@ BEGIN;
 		provider TEXT,
 		nutrients hstore
 	);
+
 	CREATE TYPE WELLNESS AS ENUM ('good', 'avarage', 'bad');
 
-	CREATE TABLE mbaw.nutricional_events(
+	CREATE TABLE mbaw.meals(
 		id SERIAL PRIMARY KEY,
-		food_id INT,
-		carer_id INT,
-		animal_file_id INT,
-		offered_at TIMESTAMP NOT NULL,
 		observations TEXT,
-		assimilated_qty NUMERIC CHECK (assimilated_qty > 0),
-		offered_qty NUMERIC CHECK(offered_qty > assimilated_qty),
-		offer_type TEXT NOT NULL,
+		extra_attrs JSONB
+	);
+
+	CREATE TABLE mbaw.meal_details(
+		meal_id INT NOT NULL REFERENCES mbaw.meals(id),
+		food_id INT NOT NULL REFERENCES mbaw.foods(id),
+		offered_qty NUMERIC CHECK( offered_qty > 0 ),
+		assimilated_qty NUMERIC CHECK (offered_qty >= assimilated_qty),
+		offer_mode TEXT
+	);
+
+	CREATE TABLE mbaw.animal_meals(
+		animal_file_id INT REFERENCES mbaw.animal_files(id),
+		offered_by INT REFERENCES mbaw.carers(id),
+		meal_id INT references mbaw.meals(id),
 		acceptance_avaliation WELLNESS,
-		extra_attrs JSONB,
-		CONSTRAINT fk_food FOREIGN KEY(food_id) REFERENCES mbaw.foods(id),
-		CONSTRAINT fk_carer FOREIGN KEY(carer_id) REFERENCES mbaw.carers(id),
-		CONSTRAINT fk_animal_file FOREIGN KEY(animal_file_id) REFERENCES mbaw.animal_files(id)
+		offered_at TIMESTAMP DEFAULT now()
 	);
 
 COMMIT;
