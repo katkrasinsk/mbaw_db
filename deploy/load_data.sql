@@ -2,30 +2,16 @@
 
 BEGIN;
 
-	-- Atoba and a file for it
-	WITH ins AS (
-		INSERT INTO mbaw.animals
-			(popular_name, scientific_name)
-		VALUES
-			('Atoba', 'Sula Leucogaste')
-		RETURNING id 
-	)
-	INSERT INTO mbaw.animal_files
-		(animal_id, internal_code_for_animal, observations)
-	VALUES
-		( ( SELECT id FROM ins ), 11, 'Inserido para teste' );
 
-	-- Trinta reis and a file for it
-	WITH ins2 AS (
-		INSERT INTO mbaw.animals
-			(popular_name, scientific_name)
-		VALUES
-			('Trinta reis', 'Thalaceus')
-		RETURNING id
-	)
-	INSERT INTO  mbaw.animal_files
-		(animal_id, internal_code_for_animal, observations )
-	VALUES
-		( ( SELECT id FROM ins2 ), 12, 'Inserido para teste' );
+	\COPY mbaw.animals FROM 'data/animals.csv' CSV;
+	\COPY mbaw.carers FROM 'data/carers.csv' CSV;
+	\COPY mbaw.enclosures FROM 'data/enclosures.csv' CSV;
+	\COPY mbaw.foods FROM 'data/foods.csv' CSV;
+	\COPY mbaw.animal_files FROM 'data/animal_files.csv' CSV;
+	\COPY mbaw.hospitalizations FROM 'data/hospitalizations.csv' CSV;
+	\COPY mbaw.meals FROM 'data/meals.csv' CSV;
+	\COPY mbaw.meal_details FROM 'data/meal_details.csv' CSV;
+	\COPY mbaw.animal_meals FROM 'data/animal_meals.csv' CSV;
+
 
 COMMIT;

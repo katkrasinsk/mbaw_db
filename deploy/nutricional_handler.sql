@@ -7,6 +7,7 @@ BEGIN;
 		id SERIAL PRIMARY KEY,
 		name TEXT NOT NULL,
 		created_at TIMESTAMP DEFAULT now(),
+		created_by INT REFERENCES mbaw.carers(id),
 		is_medication BOOLEAN DEFAULT FALSE,
 		is_supplementation BOOLEAN DEFAULT FALSE,
 		is_normal BOOLEAN DEFAULT TRUE,

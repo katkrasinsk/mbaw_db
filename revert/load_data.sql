@@ -2,9 +2,14 @@
 
 BEGIN;
 
-	DELETE FROM mbaw.animal_files
-	WHERE internal_code_for_animal = 11 or internal_code_for_animal = 12;
-	DELETE FROM mbaw.animals
-	WHERE scientific_name = 'Thalaceus' or scientific_name = 'Sula Leucogaste';
+	DELETE FROM mbaw.animal_meals;
+	DELETE FROM mbaw.meal_details;
+	DELETE FROM mbaw.meals;
+	DELETE FROM mbaw.hospitalizations;
+	DELETE FROM mbaw.animal_files;
+	DELETE FROM mbaw.foods;
+	DELETE FROM mbaw.enclosures;
+	DELETE FROM mbaw.carers;
+	DELETE FROM mbaw.animals;
 
 COMMIT;
