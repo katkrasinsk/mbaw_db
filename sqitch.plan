@@ -9,3 +9,5 @@ internees 2021-05-20T16:23:44Z Marco Arthur <arthurpbs@gmail.com> # table of int
 carers 2021-05-20T20:12:42Z Marco Arthur <arthurpbs@gmail.com> # Animal take care technical person
 nutricional_handler 2021-05-20T20:21:32Z Marco Arthur <arthurpbs@gmail.com> # The nutritional animal handler
 load_data 2021-05-20T23:27:59Z Marco Arthur <arthurpbs@gmail.com> # Load some data
+add_photo_to_animal_files 2021-05-27T20:36:36Z Marco Arthur <arthurpbs@gmail.com> # Add photo column for animal_files table
+insert_meal_procedure 2021-06-07T17:37:30Z Marco Arthur <arthurpbs@gmail.com> # A procedure to Insert feeding data for animals
