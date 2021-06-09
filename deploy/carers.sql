@@ -3,7 +3,7 @@
 BEGIN;
 
 	CREATE TABLE mbaw.carers(
-		id INT PRIMARY KEY,
+		id SERIAL PRIMARY KEY,
 		name TEXT NOT NULL,
 		email TEXT NOT NULL,
 		birthday DATE,

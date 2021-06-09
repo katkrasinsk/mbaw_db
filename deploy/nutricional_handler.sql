@@ -15,11 +15,10 @@ BEGIN;
 		nutrients hstore
 	);
 
-	CREATE TYPE WELLNESS AS ENUM ('good', 'avarage', 'bad');
-
 	CREATE TABLE mbaw.meals(
 		id SERIAL PRIMARY KEY,
 		observations TEXT,
+		total_rest NUMERIC,
 		extra_attrs JSONB
 	);
 
@@ -27,7 +26,7 @@ BEGIN;
 		meal_id INT NOT NULL REFERENCES mbaw.meals(id),
 		food_id INT NOT NULL REFERENCES mbaw.foods(id),
 		offered_qty NUMERIC CHECK( offered_qty > 0 ),
-		assimilated_qty NUMERIC CHECK (offered_qty >= assimilated_qty),
+		unit TEXT,
 		offer_mode TEXT
 	);
 
@@ -35,7 +34,6 @@ BEGIN;
 		animal_file_id INT REFERENCES mbaw.animal_files(id),
 		offered_by INT REFERENCES mbaw.carers(id),
 		meal_id INT references mbaw.meals(id),
-		acceptance_avaliation WELLNESS,
 		offered_at TIMESTAMP DEFAULT now()
 	);
 
