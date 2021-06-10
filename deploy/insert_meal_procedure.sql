@@ -41,6 +41,7 @@ BEGIN;
 		food_array type_food_offer[],
 		observations TEXT,
 		carer_id INT,
+		offered_at TIMESTAMP,
 		total_rest_of_food NUMERIC
 	)
 	LANGUAGE 'plpgsql'
@@ -78,9 +79,9 @@ BEGIN;
 		END LOOP;
 
 		-- save into animal_meals table
-		INSERT INTO mbaw.animal_meals("animal_file_id", "meal_id", "offered_by")
+		INSERT INTO mbaw.animal_meals("animal_file_id", "meal_id", "offered_by", "offered_at")
 		VALUES
-		(animal_file_id, new_meal_id, carer_id);
+		(animal_file_id, new_meal_id, carer_id, offered_at);
 
 	END;
 	$BODY$;
