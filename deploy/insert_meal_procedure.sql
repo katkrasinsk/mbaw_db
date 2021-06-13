@@ -59,7 +59,7 @@ BEGIN;
 		WHERE id = animal_file_id;
 
 		IF NOT FOUND THEN
-			RAISE NOTICE 'Animal file (id:%) could not be found', animal_file_id;
+			RAISE EXCEPTION 'Animal file (id:%) could not be found', animal_file_id;
 		END IF;
 
 		-- Create a new meal without any extra attributes
