@@ -6,6 +6,5 @@ BEGIN;
 	DROP TABLE mbaw.meal_details;
 	DROP TABLE mbaw.meals;
 	DROP TABLE mbaw.foods;
-	DROP TYPE WELLNESS CASCADE; 
 
 COMMIT;
