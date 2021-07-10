@@ -92,4 +92,37 @@ BEGIN;
 @Paramenters: $1- mbaw.animal_files.id
 @Returns: JSON';
 
+    /*
+    *
+    * View related to all feed history to all animals file.
+    *
+    */
+    CREATE OR REPLACE VIEW mbaw.animal_feed_history AS
+    WITH animal_meal_details AS (
+        SELECT animal_file_id, am.meal_id,
+               json_agg(md) AS meal_details
+        FROM mbaw.animal_meals am LEFT JOIN 
+             ( SELECT f.name as food_name
+                  , f.is_medication
+                  , f.is_supplementation
+                  , f.is_normal
+                  , f.nutrients
+                  , f.provider
+                  , d.offer_mode
+                  , d.offered_qty
+                  , d.unit
+                  , d.meal_id
+            FROM mbaw.meal_details d JOIN mbaw.foods f ON (d.food_id = f.id) 
+             ) md ON (md.meal_id = am.meal_id)
+        GROUP BY animal_file_id, am.meal_id
+    ) SELECT amd.animal_file_id
+         , amd.meal_id, observations
+         , total_rest
+         , offered_at
+         , floor(extract(epoch from age(offered_at))/3600) AS hours_ago
+         , meal_details
+    FROM animal_meal_details amd
+         JOIN mbaw.meals m ON (amd.meal_id = m.id) 
+         JOIN mbaw.animal_meals am ON( amd.meal_id = am.meal_id);
+
 COMMIT;
